@@ -50,7 +50,6 @@ public class TestTaskFour extends AbstractTest {
         }
     }
 
-    // TODO - this test isn't matching the expectation properly.
 //    @Test
 //    public void testTestSettingJobIdCallsProperAssertion (@Mocked Assert mockedAssert) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 //        Class jobTestClass = getClassByName("test.JobTest");

@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 /**
  * Created by LaunchCode
  */
+@SuppressWarnings("JavaReflectionMemberAccess")
 public class TestTaskTwo extends AbstractTest {
 
     @Test
@@ -108,7 +109,7 @@ public class TestTaskTwo extends AbstractTest {
          * created the JobField base class and pulled the method up.
          * */
         try {
-            PositionType.class.getDeclaredMethod("equals", Object.class);
+            PositionType.class.getMethod("equals", Object.class);
         } catch (NoSuchMethodException e) {
             try {
                 Class jobFieldClass = getClassByName("JobField");

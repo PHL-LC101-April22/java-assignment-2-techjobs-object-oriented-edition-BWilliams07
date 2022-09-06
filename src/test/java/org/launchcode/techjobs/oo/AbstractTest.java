@@ -3,6 +3,7 @@ package org.launchcode.techjobs.oo;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 /**
  * Created by LaunchCode
@@ -49,7 +50,7 @@ public class AbstractTest {
             Method getValueMethod = clazz.getMethod("getValue");
             value = (String) getValueMethod.invoke(getter.invoke(job));
         }
-        if (substituteEmpty && value == "") {
+        if (substituteEmpty && Objects.equals(value, "")) {
             value = "Data not available";
         }
         return value;
