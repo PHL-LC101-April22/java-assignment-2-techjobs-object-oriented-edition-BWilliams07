@@ -1,19 +1,46 @@
 package org.launchcode.techjobs.oo;
 
-/**
- *
- */
-public class JobField {
-    public int id;
-    public static int nextId = 1;
-    public String value;
+import java.util.Objects;
 
-    // Custom toString, equals, and hashCode methods:
+public abstract class JobField {
+    private final int id;
+    private static int nextId = 1;
+    private String value;
 
-    @Override
-    public String toString() {
+    public JobField() {
+        id = nextId;
+        nextId++;
+    }
+    public JobField(String value) {
+        this();
+        this.value = value;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getValue() {
         return value;
     }
 
+    public void setValue(String value) {
+        this.value = value;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        JobField jobField = (JobField) o;
+        return id == jobField.id && Objects.equals(value, jobField.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, value);
+    }
+    public String toString() {
+        return value;
+    }
 }

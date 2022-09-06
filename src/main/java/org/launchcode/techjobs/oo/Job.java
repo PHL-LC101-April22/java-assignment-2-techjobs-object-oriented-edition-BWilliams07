@@ -1,5 +1,6 @@
 package org.launchcode.techjobs.oo;
 
+
 import java.util.Objects;
 
 public class Job {
@@ -13,16 +14,14 @@ public class Job {
     private PositionType positionType;
     private CoreCompetency coreCompetency;
 
-    // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
-    //  other five fields. The second constructor should also call the first in order to initialize
-    //  the 'id' field.
-
+    //creation of primary key
     public Job() {
         id = nextId;
         nextId++;
     }
 
-    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
+    public Job(String name, Employer employer, Location location, PositionType positionType,
+               CoreCompetency coreCompetency) {
         this();
         this.name = name;
         this.employer = employer;
@@ -35,81 +34,109 @@ public class Job {
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Job job = (Job) o;
-        return id == job.id;
+        return getId() == job.getId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
 
+
+    //what if I stored the key value pairs in a HashMap? Then, run into issue of different value types(int)
+    @Override
+    public String toString() {
+
+
+        if (name.equals("")) {
+            setName("Data not available");
+        }
+        if (Job.this.employer.getValue().equals("")) {
+            this.employer.setValue("Data not available");
+        }
+        if(Job.this.location.getValue().equals("")) {
+            this.location.setValue("Data not available");
+        }
+        if(Job.this.positionType.getValue().equals("")) {
+            this.positionType.setValue("Data not available");
+        }
+        if(Job.this.coreCompetency.getValue().equals("")) {
+            this.coreCompetency.setValue("Data not available");
+        }
+
+
+        return  "\n" +
+                "ID: " + id +
+                "\nName: " + name +
+                "\nEmployer: " + employer +
+                "\nLocation: " + location +
+                "\nPosition Type: " + positionType +
+                "\nCore Competency: " + coreCompetency +
+                "\n";
+    }
+
+
+
+
+
+
+
+//
+//        if (name == "" && Job.this.employer.getValue().equals("") &&
+//    Job.this.location.getValue().equals("") && Job.this.positionType.getValue().equals("")
+//        && Job.this.coreCompetency.getValue().equals("")) {
+//        return "OOPS! This job does not seem to exist.";
+//    }
+//
+
+
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
-        if (name == null || name.isEmpty()) {
-            return "Data not available";
-        }
         return name;
-    }
-
-    public String getValue() {
-        String value = null;
-        return "Data Not Available";
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Employer getEmployer() {
         return employer;
     }
 
-    public void setEmployer(Employer employer) {
-        this.employer = employer;
-    }
-
     public Location getLocation() {
         return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 
     public PositionType getPositionType() {
         return positionType;
     }
 
-    public void setPositionType(PositionType positionType) {
-        this.positionType = positionType;
-    }
-
     public CoreCompetency getCoreCompetency() {
         return coreCompetency;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmployer(Employer employer) {
+        this.employer = employer;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void setPositionType(PositionType positionType) {
+        this.positionType = positionType;
+    }
+
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public String toString() {
-        return "\n" +
-                "ID: " + id +
-                "\nName: " + name +
-                "\nEmployer: " + employer.getValue() + //getValue()
-                "\nLocation: " + location.getValue() +
-                "\nPosition Type: " + positionType.getValue() +
-                "\nCore Competency: " + coreCompetency.getValue() +
-                "\n";
     }
 }
